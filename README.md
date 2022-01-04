@@ -89,13 +89,13 @@ sublet
 └── pig-modules -- 系统业务模块
      ├── pig-chat -- 聊天模块
      	├── sublet-chat-api -- 聊天公共api模块
-		└── sublet-chat-biz -- 聊天业务处理模块
+	└── sublet-chat-biz -- 聊天业务处理模块
      ├── pig-post -- 帖子模块
      	├── sublet-post-api -- 帖子公共api模块
-		└── sublet-post-biz -- 帖子业务处理模块
+	└── sublet-post-biz -- 帖子业务处理模块
      └── pig-user -- 用户模块
      	├── sublet-user-api -- 用户权限管理公共api模块
-		└── sublet-user-biz -- 用户权限管理业务处理模块
+	└── sublet-user-biz -- 用户权限管理业务处理模块
 ```
 
 > 数据库初始化说明
