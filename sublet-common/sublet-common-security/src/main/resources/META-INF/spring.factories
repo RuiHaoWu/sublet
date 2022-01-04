@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.wrh.sublet.common.security.config.OAuth2ResourceServerConfig,\
+  com.wrh.sublet.common.security.SecurityAutoConfiguration,\
+  com.wrh.sublet.common.security.aspect.SecurityInnerAspect
+
+
+  

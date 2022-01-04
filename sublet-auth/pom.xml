@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wrh</groupId>
+        <artifactId>sublet</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sublet-auth</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>sublet-auth</name>
+    <description>sublet 基于oauth2认证服务器</description>
+
+    <dependencies>
+        <!--注册中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--配置中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-feign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-redis</artifactId>
+        </dependency>
+
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-user-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

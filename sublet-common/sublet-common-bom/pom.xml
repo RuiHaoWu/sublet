@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wrh</groupId>
+    <artifactId>sublet-common-bom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <description>common 依赖管理</description>
+
+    <properties>
+        <mybatis-plus.version>3.4.3.3</mybatis-plus.version>
+        <hutool.version>5.7.12</hutool.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+        <valiation.api.version>2.0.1.Final</valiation.api.version>
+        <valiation.hibernate.version>6.1.5.Final</valiation.hibernate.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--core模块-->
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--web模块-->
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- 用户管理api模块 -->
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-user-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-post-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--mybatis-->
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-mybatis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-feign</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-log</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-feign</artifactId>
+                <version>${sublet.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wrh</groupId>
+                <artifactId>sublet-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--mybatis-plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--hutool-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!--kaptcha-->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+            <!--参数校验-->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${valiation.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${valiation.hibernate.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

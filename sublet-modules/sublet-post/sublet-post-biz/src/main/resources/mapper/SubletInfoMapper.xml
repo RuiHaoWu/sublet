@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2020 pig4cloud Authors. All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wrh.sublet.post.biz.mapper.SubletInfoMapper">
+
+    <resultMap id="baseResultMap" type="com.wrh.sublet.post.api.entity.SubletInfo">
+        <id property="id" column="sublet_info_id"/>
+        <result property="description" column="description"/>
+        <result property="monthlyRent" column="monthly_rent"/>
+        <result property="address" column="address"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="district" column="district"/>
+        <result property="street" column="street"/>
+        <result property="userId" column="user_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="lockFlag" column="lock_flag"/>
+        <result property="status" column="status"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="area" column="area"/>
+        <result property="images" column="images"/>
+        <result property="createBy" column="create_by"/>
+    </resultMap>
+
+
+    <resultMap id="subletInfoVoResultMap" type="com.wrh.sublet.post.api.vo.SubletInfoVo">
+        <id property="id" column="sublet_info_id"/>
+        <result property="description" column="description"/>
+        <result property="monthlyRent" column="monthly_rent"/>
+        <result property="address" column="address"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="district" column="district"/>
+        <result property="street" column="street"/>
+        <result property="userId" column="user_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="lockFlag" column="lock_flag"/>
+        <result property="status" column="status"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="area" column="area"/>
+        <result property="images" column="images"/>
+        <result property="createBy" column="create_by"/>
+        <collection property="labelList" ofType="com.wrh.sublet.post.api.entity.Label">
+            <id property="labelId" column="label_id"/>
+            <result property="labelName" column="label_name"/>
+            <!--            <result property="createTime" column="create_time"/>-->
+        </collection>
+    </resultMap>
+
+    <sql id="subletInfoVo">
+        `sublet`.sublet_info_id,
+        `sublet`.description,
+        `sublet`.monthly_rent,
+        `sublet`.address,
+        `sublet`.province,
+        `sublet`.city,
+        `sublet`.district,
+        `sublet`.street,
+        `sublet`.create_time,
+        `sublet`.lock_flag,
+        `sublet`.status,
+        `sublet`.user_id,
+        `sublet`.update_time,
+         `sublet`.area,
+        `sublet`.create_by,
+        `sublet`.images,
+        l.label_id,
+        l.label_name
+    </sql>
+
+    <sql id="subletInfoDetail">
+        `sublet`.sublet_info_id,
+        `sublet`.description,
+        `sublet`.monthly_rent,
+        `sublet`.address,
+        `sublet`.province,
+        `sublet`.city,
+        `sublet`.district,
+        `sublet`.street,
+        `sublet`.create_time,
+        `sublet`.lock_flag,
+        `sublet`.status,
+        `sublet`.user_id,
+        `sublet`.update_time,
+        `sublet`.area,
+        `sublet`.create_by,
+        `sublet`.images,
+        `l`.label_id,
+        `l`.label_name,
+    </sql>
+
+    <sql id="pageParamIf">
+        <if test="query.province != null and query.province != ''">
+            and sublet.province = #{query.province}
+        </if>
+        <if test="query.city != null and query.city != ''">
+            and sublet.city = #{query.city}
+        </if>
+        <if test="query.district != null and query.district != ''">
+            and sublet.district = #{query.district}
+        </if>
+        <if test="query.street != null and query.street != ''">
+            and sublet.street = #{query.street}
+        </if>
+        <if test="query.priceMin != null and query.priceMin != ''">
+            and sublet.monthly_rent >= #{query.priceMin}
+        </if>
+        <if test="query.priceMax != null and query.priceMax != ''">
+            and sublet.monthly_rent &lt;= #{query.priceMax}
+        </if>
+        <if test="query.rangeTime != null ">
+            and sublet.create_time >= #{query.rangeTime[0]}
+        </if>
+        <if test="query.rangeTime != null ">
+            and sublet.create_time &lt;= #{query.rangeTime[1]}
+        </if>
+        <if test="query.createBy != null and query.createBy != ''">
+            and sublet.create_by like concat(#{query.createBy},'%')
+        </if>
+    </sql>
+
+    <select id="getSubletInfoVoPage" resultMap="subletInfoVoResultMap">
+        SELECT
+        <include refid="subletInfoVo"/>
+        FROM
+        sublet_info AS sublet
+        LEFT JOIN sublet_info_label AS sl ON sublet.sublet_info_id = sl.sublet_info_id
+        LEFT JOIN label AS l ON l.label_id = sl.label_id
+        <where>
+            sublet.lock_flag = 0
+            <include refid="pageParamIf"></include>
+        </where>
+    </select>
+
+    <select id="getSubletInfoVoPageMiddle" resultMap="subletInfoVoResultMap">
+        SELECT
+        <include refid="subletInfoVo"/>
+        FROM
+        sublet_info AS sublet
+        LEFT JOIN sublet_info_label AS sl ON sublet.sublet_info_id = sl.sublet_info_id
+        LEFT JOIN label AS l ON l.label_id = sl.label_id
+        <where>
+            <include refid="pageParamIf"></include>
+        </where>
+    </select>
+
+    <select id="getSubletInfoByUserId" resultMap="subletInfoVoResultMap">
+        SELECT
+        <include refid="subletInfoVo"/>
+        FROM
+        sublet_info AS sublet
+        LEFT JOIN sublet_info_label AS sl ON sublet.sublet_info_id = sl.sublet_info_id
+        LEFT JOIN label AS l ON l.label_id = sl.label_id
+        where sublet.user_id = #{userId}
+    </select>
+
+    <select id="getSubletInfoDetailById" resultMap="subletInfoVoResultMap">
+        SELECT
+        <include refid="subletInfoVo"/>
+        FROM
+        sublet_info AS sublet
+        LEFT JOIN sublet_info_label AS sl ON sublet.sublet_info_id = sl.sublet_info_id
+        LEFT JOIN label AS l ON l.label_id = sl.label_id
+        where sublet.sublet_info_id = #{id}
+    </select>
+</mapper>
+
+

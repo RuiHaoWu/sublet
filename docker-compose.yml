@@ -1,0 +1,83 @@
+version: '2'
+services:
+  sublet-mysql:
+    build:
+      context: ./db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    restart: always
+    container_name: sublet-mysql
+    image: sublet-mysql
+    hostname: sublet-mysql
+    ports:
+      - 3306:3306
+
+  sublet-redis:
+    image: redis:6.0
+    ports:
+      - 6379:6379
+    restart: always
+    container_name: sublet-redis
+    hostname: sublet-redis
+
+  sublet-register:
+    image: nacos/nacos-server:v2.0.3
+    environment:
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: sublet-mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 123456
+      JVM_XMS: 64m
+      JVM_XMX: 64m
+      JVM_XMN: 16m
+    restart: always
+    ports:
+      - 8848:8848
+    container_name: sublet-register
+    hostname: sublet-register
+
+  sublet-sentinel:
+    restart: always
+    image: bladex/sentinel-dashboard:1.8.0
+    container_name: sublet-sentinel
+    ports:
+      - 8080:8080
+
+  sublet-gateway:
+    build:
+      context: ./sublet-gateway
+    restart: always
+    ports:
+      - 8000:8000
+    container_name: sublet-gateway
+    hostname: sublet-gateway
+    image: sublet-gateway
+
+  sublet-auth:
+    build:
+      context: ./sublet-auth
+    restart: always
+    container_name: sublet-auth
+    hostname: sublet-auth
+    image: sublet-auth
+
+  sublet-user:
+    build:
+      context: ./sublet-modules/sublet-user/sublet-user-biz
+    restart: always
+    container_name: sublet-user
+    hostname: sublet-user
+    image: sublet-user
+
+  sublet-post:
+    build:
+      context: ./sublet-modules/sublet-post/sublet-post-biz
+    restart: always
+    container_name: sublet-post
+    hostname: sublet-post
+    image: sublet-post
+
+

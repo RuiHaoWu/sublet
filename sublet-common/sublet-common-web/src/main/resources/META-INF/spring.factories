@@ -1,0 +1,8 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.wrh.sublet.common.web.exception.GlobalExceptionHandler,\
+  com.wrh.sublet.common.web.swagger.SwaggerConfig,\
+  com.wrh.sublet.common.web.utils.SpringContextHolder,\
+  com.wrh.sublet.common.web.config.WebConfig
+
+
+  

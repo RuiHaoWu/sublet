@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.wrh.sublet.user.api.feign.factory.RemoteLogServiceFallbackFactory,\
+  com.wrh.sublet.user.api.feign.factory.RemoteUserServiceFallbackFactory,\
+  com.wrh.sublet.user.api.feign.fallback.RemoteLogServiceFallbackImpl,\
+  com.wrh.sublet.user.api.feign.fallback.RemoteUserServiceFallbackImpl

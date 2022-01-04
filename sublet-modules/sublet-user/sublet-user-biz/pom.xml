@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.wrh</groupId>
+        <artifactId>sublet-user</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sublet-user-biz</artifactId>
+    <packaging>jar</packaging>
+
+    <description>sublet 用户管理 biz模块</description>
+
+
+    <dependencies>
+        <!--注册中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--配置中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--邮件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>${springboot.mail.version}</version>
+        </dependency>
+        <!--core模块-->
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-core</artifactId>
+        </dependency>
+        <!-- 用户管理api模块 -->
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-user-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wrh</groupId>
+            <artifactId>sublet-common-log</artifactId>
+        </dependency>
+
+        <!-- 阿里云oss存储 -->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun.oss.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
