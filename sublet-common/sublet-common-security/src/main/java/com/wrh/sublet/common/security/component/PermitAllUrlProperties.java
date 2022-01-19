@@ -19,10 +19,7 @@ package com.wrh.sublet.common.security.component;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import com.wrh.sublet.common.security.annotation.Inner;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -102,6 +99,7 @@ public class PermitAllUrlProperties implements InitializingBean, ApplicationCont
     }
 
     @Data
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class WhiteUrl {
         private String url;
